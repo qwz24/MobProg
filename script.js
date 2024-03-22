@@ -1,45 +1,46 @@
-const circle = document.querySelector(".progress-ring-circle");
-const radius = circle.r.baseVal.value;
+const progressCircle = document.querySelector(".progress-ring-circle");
+const radius = progressCircle.r.baseVal.value;
 const progressBar = document.querySelector(".progress-bar");
-const input = document.querySelector(".percent");
+const percentInput = document.querySelector(".percent");
 const animateCheckbox = document.querySelector("#animate-checkbox");
 const hideCheckbox = document.querySelector("#hide-checkbox");
-
 const circumference = 2 * Math.PI * radius;
 
-input.addEventListener("input", function () {
-  if (parseInt(this.value) > 100) {
-    this.value = "100";
+percentInput.addEventListener("input", () => {
+  let percent = parseInt(percentInput.value);
+  if (percent > 100) {
+    percent = 100;
+    percentInput.value = percent;
   }
-  setProgress(this.value);
+  setProgress(percent);
 });
 
-circle.style.strokeDasharray = `${circumference} ${circumference}`;
-circle.style.strokeDashoffset = circumference;
+progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+progressCircle.style.strokeDashoffset = circumference;
 
 function setProgress(percent) {
   const offset = circumference - (percent / 100) * circumference;
-  circle.style.strokeDashoffset = offset;
+  progressCircle.style.strokeDashoffset = offset;
 }
 
-animateCheckbox.addEventListener("change", function () {
-  if (this.checked) {
-    const value = input.value;
+animateCheckbox.addEventListener("change", () => {
+  if (animateCheckbox.checked) {
+    const value = percentInput.value;
     setProgress(0);
     setTimeout(() => {
-      circle.style.transition = "stroke-dashoffset 3s";
+      progressCircle.style.animation = "rotate 2s linear infinite";
       setProgress(value);
-    }, 10);
+    }, 0);
   } else {
-    const value = input.value;
+    const value = percentInput.value;
     setProgress(0);
     setTimeout(() => {
-      circle.style.transition = "none";
+      progressCircle.style.animation = "none";
       setProgress(value);
-    }, 10);
+    }, 0);
   }
 });
 
-hideCheckbox.addEventListener("change", function () {
-  progressBar.style.display = this.checked ? "none" : "block";
+hideCheckbox.addEventListener("change", () => {
+  progressBar.style.display = hideCheckbox.checked ? "none" : "block";
 });
