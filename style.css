@@ -1,0 +1,163 @@
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Общие стили */
+html,
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.progress-label {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+.progress-section {
+  order: 1;
+  height: 50vh;
+  display: flex;
+  justify-content: center; /* Располагаем содержимое по центру */
+  align-items: center;
+}
+
+.input-section {
+  order: 2;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  height: 50vh;
+  align-content: center;
+  justify-content: center;
+}
+
+.progress-ring-circle {
+  transform-origin: center;
+  transform: rotate(-90deg);
+  /* transition: stroke-dashoffset 0.3s; */
+}
+
+/* Стили для процентного инпута */
+.percent {
+  width: 55px;
+  height: 30px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: center;
+}
+
+.percent:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(10, 1, 29, 0.5);
+}
+
+.percent:hover {
+  border-color: #aaa;
+}
+
+.toggle-container {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.input-label {
+  margin-left: 8px;
+}
+
+/* Скрытие стандартного чекбокса и стили для переключателя */
+
+.toggle-checkbox {
+  display: none;
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggle-label {
+  margin-left: 10px;
+  align-content: center;
+}
+
+.toggle-checkbox:checked + .toggle-slider {
+  background-color: #005bff;
+}
+
+.toggle-checkbox:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}
+
+/* Для вертикальной ориентации экрана */
+@media only screen and (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .progress-section,
+  .input-section {
+    flex-basis: 50%;
+  }
+
+  .input-section {
+    align-content: start;
+  }
+}
+
+/* Для горизонтальной ориентации экрана */
+@media only screen and (orientation: landscape) {
+  .container {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .input-section {
+    align-content: center;
+    justify-content: center;
+  }
+}
